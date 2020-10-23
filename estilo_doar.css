@@ -1,0 +1,42 @@
+﻿@charset "UTF-08";
+
+/*ESTILO DO LOGIN*/
+
+/* Cor definida para o fundo da página login*/
+.corpo{
+	background-color: #6495ED;
+	margin-bottom: 0;
+	bottom: 0;
+}
+
+/*Posição da "caixa" do login e cor*/
+.form-horizontal{
+	background-color: rgb(255,255,255);
+	margin-top: 5%;
+	margin-bottom: 5%;
+	margin-left: 30%;
+	margin-right: 30%;
+	padding-top: 10px;
+	border-radius: 5px;
+}
+
+.titulo {
+	font-size: 20px;
+}
+
+div a {
+	padding: 1.4rem 14rem;
+	margin: 1.4rem;
+	background: lightgray;
+	display: block;
+	text-decoration: none;
+	color: black;
+}
+
+div a:hover {
+	background-color:gray;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+}
+
