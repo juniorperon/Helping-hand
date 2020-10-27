@@ -1,0 +1,37 @@
+.menu-navigation-basic {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.menu-navigation-basic a {
+    color:  #809098;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin: 0 20px auto;
+    line-height: 2;
+    text-transform: uppercase;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.menu-navigation-basic a.selected {
+    color:  #435762;
+    border-bottom: 2px solid #4db3e3;
+    padding-bottom: 6px;
+}
+
+.slicknav_menu {
+    display:none;
+}
+
+@media (max-width: 600px) {
+    .menu-navigation-basic{
+        display:none;
+    }
+
+    .slicknav_menu {
+        display:block;
+    }
+}
