@@ -8,20 +8,42 @@
 		<link rel = "stylesheet" type = "text/css" href = "estilo_pessoa.css"/>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+
+		<script>
+			function pedido_enviado()
+			{
+				alert("Seu pedido foi enviado.")
+			}
+		</script>
+
 	</head>
 
+		<!-- Menu -->
+		<link rel="stylesheet" href="assets/demo.css">
+    	<link rel="stylesheet" href="assets/navigation-icons.css">
+    	<link rel="stylesheet" href="assets/slicknav/slicknav.min.css">
 
-<br>
-    <a href="menu.html">
-      <right><img src="btn_voltar.png" width="70px" height="70px" class="img-responsive" alt="Responsive image"></right>
-    </a>
+   		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	</head>
+
+<body>
+
+<nav class="menu-navigation-icons">
+    <a href="perfil.html" class="menu-magenta"><i class="fa fa-address-card"></i><span>Perfil</span></a>
+    <a href="doar.html" class="menu-blue"><i class="fa fa-heart"></i><span>Faça uma doação</span></a>
+    <a href="receber.html" class="menu-yellow"><i class="fa fa-smile-o"></i><span>Fazer um pedido</span></a>
+    <a href="historico_mensagens.html" class="menu-green"><i class="fa fa-comment"></i><span>Mensagens</span></a>
+</nav>
 
 	<body class="corpo">
 		<form class="form-horizontal col-sm-5">
 			<div class="form-group">
 				<center><h1>O que necessita?</h1></center>
 				<div class="col-sm-12">
-					<center><img src="sgsp logo.png" width="200px" height="100px" class="img-responsive" alt="Responsive image"></center>
+					<center><img src="" width="200px" height="100px" class="img-responsive" alt=""></center>
 				</div>
 			</div>
 
@@ -34,7 +56,7 @@
 			</div>
 			<center>			
 				<div class="form-group">
-						<a type="button"  class="btn btn-primary" >Enviar Mensagem</a>
+						<a type="button" onclick="pedido_enviado()" class="btn btn-primary" >Enviar Mensagem</a>
 				</div>
 			</center>
 		</form>
