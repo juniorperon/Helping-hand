@@ -2,14 +2,21 @@
 <html>
 	<head>
 		<link rel="icon" href="favicon.png" type="image/x-icon" />
-		<title>Histório de Mensagens</title>
+		<title>Mensagem no Histórico</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-		<link rel = "stylesheet" type = "text/css" href = "estilo_doar.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "estilo_pessoa.css"/>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-	</head>
 
+		<script>
+			function mensagem_enviada()
+			{
+				alert("Sua mensagem foi enviada.")
+			}
+		</script>
+
+	</head>
 	<!-- Menu -->
 	<link rel="stylesheet" href="assets/demo.css">
     <link rel="stylesheet" href="assets/navigation-icons.css">
@@ -33,25 +40,27 @@
 
 	<body class="corpo">
 		<form class="form-horizontal col-sm-5">
-			<div class="form-group">
-				<center><h1>Histórico de Mensagens</h1></center>
+			<div class="form-group">				
 				<div class="col-sm-12">
-					<center><img src="" width="200px" height="100px" class="img-responsive" alt=""></center>
+					<center><img src="mensagens.png" width="70px" height="70px" class="img-responsive" alt="Responsive image"></center>
 				</div>
 			</div>
+
+			<br>
+
 			<div class="form-group">
 				<center>
-					<div>
-						<a href="mensagem_salva.html"  class="pessoa">Usuário</a>
-					</div>
-					<div>
-						<a href="mensagem_salva.html"  class="pessoa">Usuário</a>
-					</div>
-					<div>
-						<a href="mensagem_salva.html"  class="pessoa">Usuário</a>
-					</div>
+					<label class="titulo">Usuário</label><br>
+					<textarea name="mensagem" id="" cols="30" rows="10"></textarea>
 				</center>
 			</div>
+			<center>			
+				<div class="form-group">
+						<a type="button" href="historico_mensagens.html" class="btn btn-secondary">Voltar</a>
+
+						<a type="button"  onclick="mensagem_enviada()" class="btn btn-primary" >Enviar Mensagem</a>
+				</div>
+			</center>
 		</form>
 	</body>
 </html>
