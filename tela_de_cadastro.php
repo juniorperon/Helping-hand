@@ -1,6 +1,11 @@
 <!DOCTYPE html>
+<?php
+session_start();
+?>
 <html>
 	<head>
+
+	
 		<link rel="icon" href="favicon.png" type="image/x-icon" />
 		<title>Acesso ao Sistema</title>
 		<meta charset="utf-8" />
@@ -14,9 +19,9 @@
 			{
 				d = document.login;
 				//Verifica se o campo login está vazio
-				if (d.login.value == "")
+				if (email_login == "")
 				{
-					alert("Favor informar o seu Prontuario!")
+					alert("Favor informar o seu Email!")
 					d.login.focus();
 					return false;
 				}
@@ -58,7 +63,8 @@
 	</head>
 
 	<body class="corpo">
-		<form class="form-horizontal col-sm-5" method="post" action="valida_login.php" onSubmit="return validaForm()">
+	
+		<form class="form-horizontal col-sm-5" method="POST" action="logar.php"  name="relatopropio">
 			<div class="form-group">
 				<div class="col-sm-12">
 					<center><img src="sgsp logo.png" width="200px" height="100px" class="img-responsive" alt="Responsive image"></center>
@@ -70,24 +76,25 @@
 			<div class="form-group">
 					<label id="pad" for="prontuario">E-mail</label>
 					<div id="pad">
-						<input type="text" name="login" class="form-control" id="prontuario" placeholder="Digite seu e-mail">
+						<input type="text" name="email_login" class="form-control" id="email"  placeholder="Digite seu e-mail">
 					</div>
 			</div>
 
 			<div class="form-group">
 				<label id="pad" for="senha">Senha</label>
 					<div id="pad">
-						<input type="password" name="senha" class="form-control" id="senha" placeholder="Digite a senha">
+						<input type="password" name="senha_login" class="form-control" id="senha" placeholder="Digite a senha">
 					</div>
 			</div>
 
 			<center>			
 				<div class="form-group">
 					<div class="col-sm-12">
-						<a type="button" href="menu.html" class="btn btn-success">Entrar</a> <!-- trocar para button depois -->
+						<a type="submit"  class="btn btn-success" id="alinhado">Acessar</a> 
 					</div>
 				</div>
 			</center>
+		
 
 			<center><label>Não tem cadastro? O que acha de fazer uma boa ação. Cadastre-se! <a data-toggle="modal" href="#myModal">Clique Aqui</a></label></center>
 		</form>
@@ -98,8 +105,8 @@
     <!-- 1 - action="" - Precisa ser informado o php onde salva as informações para o banco de dados -->
     <!-- 2 - name="" - Informa o nome do php sem o .php, apenas o nome do arquivo -->
     <!-- 3 - Em cada div o id e name deve levar o nome do campo que está no php que salva as informações no banco de dados -->
-		<form method="post" action="" name="" onSubmit="return validaForm()">
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<form method="POST" action="cadastro.php" name="relatopropio" onSubmit="return validaForm()">
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
   				<div class="modal-dialog" role="document">
     				<div class="modal-content">
       					<div class="modal-header">
@@ -118,59 +125,53 @@
 							<div class="form-group">                
                 				<label id="pad" for="nome" >Nome</label>
                 				<div id="pad">
-                  					<input  type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+                  					<input  type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" maxlength="30" required>
                 				</div>
               				</div>
 
                       <div class="form-group">                
-                        <label id="pad" for="data_nascimento" >Data de Nascimento</label>
+                        <label id="pad" for="data" >Data de Nascimento</label>
                         <div id="pad">
-                            <input  type="date" class="form-control" id="data_nascimento" name="data_nascimento">
+                            <input  type="date" class="form-control" id="nasc" name="data">
                         </div>
                       </div>
 
                       <div class="form-group">                
                         <label id="pad" for="cidade" >Cidade</label>
                         <div id="pad">
-                            <input  type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite a cidade onde reside">
+                            <input  type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite a cidade onde reside" maxlength="30" required>
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label id="pad" for="email">E-Mail</label>
                           <div id="pad">
-                            <input  type="text" class="form-control"  name="email" id="email" placeholder="Digite seu e-mail">
+                            <input  type="email" class="form-control"  name="email" id="email" placeholder="Digite seu e-mail" maxlength="50" required>
                           </div>
                       </div>
 
                       <div class="form-group">
                         <label id="pad" for="telefone">Telefone</label>
                         <div id="pad">
-                            <input  type="text" name="telefone" class="form-control" id="telefone" placeholder="Digite seu telefone" maxlength="12" onkeypress="formatar('##.####-####', this)">
+                            <input  type="text" name="telefone" class="form-control" id="telefone" placeholder="Digite seu telefone" maxlength="12" onkeypress="formatar('##.####-####', this)" maxlength="30" required>
                         </div>
                       </div>  
 
               				<div class="form-group">
                 				<label id="pad" for="cpf" >CPF</label>
                 				<div id="pad">
-                  					<input  type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF" maxlength="14" onkeypress="formatar('###.###.###-##', this)">
+                  					<input  type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF" maxlength="14" onkeypress="formatar('###.###.###-##', this)" maxlength="30" required>
                 				</div>
               				</div>
 
                       <div class="form-group">                
                         <label id="pad" for="senha" >Senha</label>
                         <div id="pad">
-                            <input  type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                            <input  type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" maxlength="30" required>
                         </div>
                       </div>
 
-                      <div class="form-group">                
-                        <label id="pad" for="nomedorelator" >Confirme sua senha</label>
-                        <div id="pad">
-                            <input  type="password" class="form-control" id="senha" name="senha" placeholder="Informe sua senha mais uma vez">
-                        </div>
-                      </div>
-                
+                  
               				<center>
                 				<div class="form-group" id="alinhado">
                   					<div class="col-sm-12">
