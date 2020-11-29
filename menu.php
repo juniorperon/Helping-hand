@@ -23,7 +23,7 @@
 <body>
 
 <nav class="menu-navigation-icons">
-    <a href="tela_de_perfil.html" class="menu-magenta"><i class="fa fa-address-card"></i><span>Perfil</span></a>
+    <a href="perfil.html" class="menu-magenta"><i class="fa fa-address-card"></i><span>Perfil</span></a>
     <a href="doar.html" class="menu-blue"><i class="fa fa-heart"></i><span>Faça uma doação</span></a>
     <a href="receber.html" class="menu-yellow"><i class="fa fa-smile-o"></i><span>Fazer um pedido</span></a>
     <a href="historico_mensagens.html" class="menu-green"><i class="fa fa-comment"></i><span>Mensagens</span></a>
