@@ -27,7 +27,7 @@ HTML;
    
 	} catch (PDOException $e) {
 		echo $e->getMessage();
-		echo("Erro ao cadastrar");
+		echo("Erro ao cadastrar ao site");
 	}
 	
 	
