@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="favicon.png" type="image/x-icon" />
+    <title>Perfil</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel = "stylesheet" type = "text/css" href = "estilo.css"/>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+      function formatar(mascara, documento)
+            {
+              var i = documento.value.length;
+              var saida = mascara.substring(0,1);
+              var texto = mascara.substring(i)
+            
+              if (texto.substring(0,1) != saida)
+              {
+                documento.value += texto.substring(0,1);
+              }
+            }
+        </script>
+
+    <script>
+      window.history.forward(1);
+    </script>
+
+    <script>
+      $('#myModal2').on('shown.bs.modal', function () 
+      {
+        $('#myInput').focus()
+      }
+    </script>
+
+    <!-- Menu -->
+    <link rel="stylesheet" href="assets/demo.css">
+    <link rel="stylesheet" href="assets/navigation-icons.css">
+    <link rel="stylesheet" href="assets/slicknav/slicknav.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+<body>
+
+<nav class="menu-navigation-icons">
+    <a href="perfil.html" class="menu-magenta"><i class="fa fa-address-card"></i><span>Perfil</span></a>
+    <a href="doar.html" class="menu-blue"><i class="fa fa-heart"></i><span>Faça uma doação</span></a>
+    <a href="receber.html" class="menu-yellow"><i class="fa fa-smile-o"></i><span>Fazer um pedido</span></a>
+    <a href="historico_mensagens.html" class="menu-green"><i class="fa fa-comment"></i><span>Mensagens</span></a>
+</nav>
+    
+  </head>
+
+<!-- Tela onde filtra os dados já cadastrados do usuário no banco -->
+  <body class="corpo">
+    <form class="form-horizontal col-sm-5" method="post" action="perfilusuario.php" onSubmit="return validaForm()">
+      <div class="form-group">
+        <div class="col-sm-12">
+          <center><img src="perfil.png" width="150px" height="100px" class="img-responsive" alt="Responsive image"></center>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="form-group">
+          <label id="pad" for="nome">Nome</label>
+          <div id="pad">
+            <input type="text" name="nome" class="form-control" id="nome" value="Beneficiário">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label id="pad" for="endereco">Endereço</label>
+          <div id="pad">
+            <input type="text" name="endereco" class="form-control" id="endereco" value="Rua das Maravilhas">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label id="pad" for="cidade">Cidade</label>
+          <div id="pad">
+            <input type="text" name="cidade" class="form-control" id="prontuario" value="Sorocaba">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label id="pad" for="estado">Estado</label>
+          <div id="pad">
+            <input type="text" name="estado" class="form-control" id="endereco" value="São Paulo">
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label id="pad" for="email">E-Mail</label>
+          <div id="pad">
+          <input  type="text" class="form-control"  name="email" id="email" value="doacoes@helpinghand.com" placeholder="Digite seu e-mail">
+          </div>
+      </div>
+
+
+      <div class="form-group">
+          <label id="pad" for="telefone">Telefone</label>
+          <div id="pad">
+          <input  type="text" name="telefone" class="form-control" id="telefone" value="(15) 3000-4000"placeholder="Digite seu telefone" maxlength="12" onkeypress="formatar('##.####-####', this)">
+          </div>
+      </div>  
+
+      <br>
+      <br>
+
+      <center><label>Deseja alterar algum de seus dados?<a data-toggle="modal" href="#myModal2"> Clique Aqui</a></label></center>  
+
+
+<!-- Modal que exibe os dados cadastrados caso o usuário precise alterar algum dado -->
+     <form method="post" action="" name="" onSubmit="return validaForm()">
+      <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Alterar dados</h4>
+                </div>
+
+              <div class="modal-body">
+                <br>
+                <div class="form-group">
+                <div class="col-sm-12">
+                  <center><img src="" width="150px" height="100px" class="img-responsive" alt=""></center>
+                </div>
+              </div>
+
+              <div class="form-group">                
+                  <label id="pad" for="nome" >Nome</label>
+                  <div id="pad">
+                  <input  type="text" class="form-control" id="nome" name="nome" value="Beneficiário">
+                  </div>
+              </div>
+
+              <div class="form-group">
+                <label id="pad" for="endereco">Endereço</label>
+                <div id="pad">
+                <input type="text" name="endereco" class="form-control" id="endereco" value="Rua das Maravilhas">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label id="pad" for="cidade">Cidade</label>
+                <div id="pad">
+                <input type="text" name="cidade" class="form-control" id="prontuario" value="Sorocaba">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label id="pad" for="estado">Estado</label>
+                <div id="pad">
+                <input type="text" name="estado" class="form-control" id="endereco" value="São Paulo">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label id="pad" for="email">E-Mail</label>
+                <div id="pad">
+                <input  type="text" class="form-control"  name="email" id="email" value="doacoes@helpinghand.com" placeholder="Digite seu e-mail">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label id="pad" for="telefone">Telefone</label>
+                <div id="pad">
+                <input  type="text" name="telefone" class="form-control" id="telefone" value="(15) 3000-4000"placeholder="Digite seu telefone" maxlength="12" onkeypress="formatar('##.####-####', this)">
+                </div>
+              </div>  
+                
+                      <center>
+                        <div class="form-group" id="alinhado">
+                            <div class="col-sm-12">
+                              <button type="submit" class="btn btn-success">Alterar</button>
+                            </div>
+                        </div>
+
+                        
+                      </center>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </form>
+
+
+                      
+    </form>
+  </body>
+</html>
