@@ -3,16 +3,19 @@
 include_once("conexao.php");
 
 $nome  = $_REQUEST['nome'];
-$nascimento = $_REQUEST['data'];
+$nascimento = $_REQUEST['data_nascimento'];
+$cep = $_REQUEST['cep'];
 $cidade = $_REQUEST['cidade'];
-$email = $_REQUEST['email'];
+$endereco = $_REQUEST['endereco'];
+$estado = $_REQUEST['estado'];
+$email = $_REQUEST['email_cd'];
 $telefone = $_REQUEST['telefone'];
 $cpf = $_REQUEST['cpf'];
-$senha = $_REQUEST['senha'];
+$senha = $_REQUEST['senha_cd1'];
 
 	try {
-		$sql = "INSERT INTO cadastrousuario (nome, nascimento, cidade, email, telefone, cpf, senha) 
-		VALUES ('$nome', '$nascimento','$cidade','$email','$telefone','$cpf','$senha')";
+		$sql = "INSERT INTO cadastrousuario (nome, data_nasc, cep, cidade,endereco,estado,email, telefone, cpf, senha) 
+		VALUES ('$nome', '$nascimento','$cep','$cidade','$endereco','$estado','$email','$telefone','$cpf','$senha')";
 	
 		$query = mysqli_query($conexao, $sql);
 		
@@ -22,7 +25,7 @@ $senha = $_REQUEST['senha'];
 		
 		echo <<<HTML
 		
-		<a href="tela_de_cadastro.php">Voltar?</a>
+		<a href="http://localhost/Helping-hand/login.php">Voltar?</a>
 HTML;
    
 	} catch (PDOException $e) {

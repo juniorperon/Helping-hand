@@ -1,3 +1,51 @@
+<?php
+// Conexão
+require_once 'conexao.php';
+
+// Sessão
+session_start();
+
+// Botão enviar
+if(isset($_POST['btn-entrar'])):
+	$erros = array();
+	$login = mysqli_escape_string($conexao, $_POST['email_login']);
+	$senha = mysqli_escape_string($conexao, $_POST['senha_login']);
+
+	if(empty($login) or empty($senha)):
+		$erros[] = "<li> O campo login/senha precisa ser preenchido </li>";
+	else:
+		// 105 OR 1=1 
+	    // 1; DROP TABLE teste
+
+		$sql = "SELECT email FROM cadastrousuario WHERE email = '$login'";
+		$resultado = mysqli_query($conexao, $sql);		
+
+		if(mysqli_num_rows($resultado) > 0):
+		$senha = ($senha);       
+		$sql = "SELECT * FROM cadastrousuario WHERE email = '$login' AND senha = '$senha'";
+
+
+
+		$resultado = mysqli_query($conexao, $sql);
+
+			if(mysqli_num_rows($resultado) == 1):
+				$dados = mysqli_fetch_array($resultado);
+				mysqli_close($conexao);
+				$_SESSION['logado'] = true;
+				$_SESSION['id_usuario'] = $dados['email'];
+				header('Location: http://localhost/Helping-hand/perfil.php');
+			else:
+				$erros[] = "<li> Usuário e senha não conferem </li>";
+			endif;
+
+		else:
+			$erros[] = "<li> Usuário inexistente </li>";
+		endif;
+
+	endif;
+
+endif;
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -56,17 +104,11 @@
 			}
 		</script>
 
-    <script>
-      function cadastro_feito()
-      {
-        alert("Obrigado por se cadastrar. Vamos analisar seus dados e em breve entraremos em contato para aprovar seu acesso.")
-      }
-    </script>
 
 	</head>
 
 	<body class="corpo">
-		<form class="form-horizontal col-sm-5" method="post" action="valida_login.php" onSubmit="return validaForm()">
+		<form class="form-horizontal col-sm-5" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" onSubmit="return validaForm()">
 			<div class="form-group">
 				<div class="col-sm-12">
 					<center><img src="sgsp logo.png" width="150px" height="100px" class="img-responsive" alt="Responsive image"></center>
@@ -78,21 +120,21 @@
 			<div class="form-group">
 					<label id="pad" for="prontuario">E-mail</label>
 					<div id="pad">
-						<input type="text" name="login" class="form-control" required id="prontuario" placeholder="Digite seu e-mail">
+						<input type="text" value="<?php echo isset($_COOKIE['email']) ? $_COOKIE['email'] : '' ?>" name="email_login" class="form-control" required id="prontuario" placeholder="Digite seu e-mail" >
 					</div>
 			</div>
 
 			<div class="form-group">
 				<label id="pad" for="senha">Senha</label>
 					<div id="pad">
-						<input type="password" name="senha" class="form-control" required id="senha" placeholder="Digite a senha">
+						<input type="password" value="<?php echo isset($_COOKIE['senha']) ? $_COOKIE['senha'] : '' ?>"name="senha_login" class="form-control" required id="senha" placeholder="Digite a senha">
 					</div>
 			</div>
 
 			<center>			
 				<div class="form-group">
 					<div class="col-sm-12">
-						<a type="button" href="menu.html" class="btn btn-success">Entrar</a> <!-- trocar para button depois -->
+						<button type="submit" name="btn-entrar" class="btn btn-success">Entrar</button> <!-- trocar para button depois -->
 					</div>
 				</div>
 			</center>
@@ -106,7 +148,7 @@
     <!-- 1 - action="" - Precisa ser informado o php onde salva as informações para o banco de dados -->
     <!-- 2 - name="" - Informa o nome do php sem o .php, apenas o nome do arquivo -->
     <!-- 3 - Em cada div o id e name deve levar o nome do campo que está no php que salva as informações no banco de dados -->
-		<form method="post" action="" name="" onSubmit="return validaForm()">
+		<form method="post" action="cadastro.php" name="" onSubmit="return validaForm()">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   				<div class="modal-dialog" role="document">
     				<div class="modal-content">
@@ -140,7 +182,7 @@
                       <div class="form-group">                
                         <label id="pad" for="cidade">CEP</label>
                         <div id="pad">
-                            <input  type="text" class="form-control" required id="cidade" name="cidade" placeholder="Digite o CEP">
+                            <input  type="text" class="form-control" required id="cep" name="cep" placeholder="Digite o CEP">
                         </div>
                       </div>
 
@@ -154,21 +196,21 @@
                       <div class="form-group">                
                         <label id="pad" for="cidade">Endereço</label>
                         <div id="pad">
-                            <input  type="text" class="form-control" required id="cidade" name="cidade" placeholder="Digite a cidade onde reside">
+                            <input  type="text" class="form-control" required id="endereco" name="endereco" placeholder="Digite a cidade onde reside">
                         </div>
                       </div>
 
                       <div class="form-group">                
                         <label id="pad" for="cidade">Estado</label>
                         <div id="pad">
-                            <input  type="text" class="form-control" required id="cidade" name="cidade" placeholder="Digite a cidade onde reside">
+                            <input  type="text" class="form-control" required id="estado" name="estado" placeholder="Digite a cidade onde reside">
                         </div>
                       </div>
 
                       <div class="form-group">
                         <label id="pad" for="email">E-Mail</label>
                           <div id="pad">
-                            <input  type="text" class="form-control"  name="email" required id="email" placeholder="Digite seu e-mail">
+                            <input  type="text" class="form-control"  name="email_cd" required id="email" placeholder="Digite seu e-mail">
                           </div>
                       </div>
 
@@ -200,14 +242,14 @@
                       <div class="form-group">                
                         <label id="pad" for="senha" >Senha</label>
                         <div id="pad">
-                            <input  type="password" class="form-control" required id="senha" name="senha" placeholder="Digite sua senha">
+                            <input  type="password" class="form-control" required id="senha" name="senha_cd1" placeholder="Digite sua senha">
                         </div>
                       </div>
 
                       <div class="form-group">                
                         <label id="pad" for="nomedorelator" >Confirme sua senha</label>
                         <div id="pad">
-                            <input  type="password" class="form-control" required id="senha" name="senha" placeholder="Informe sua senha mais uma vez">
+                            <input  type="password" class="form-control" required id="senha" name="senha_cd" placeholder="Informe sua senha mais uma vez">
                         </div>
                       </div>
                 
